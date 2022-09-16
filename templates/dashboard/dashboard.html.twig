@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DashboardController!{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    {% for message in app.flashes('notAccess') %}
+    <div class="text-danger text-center">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <div class="pull-right mx-2">
+        <a href="{{ path('addemp') }}" class="btn btn-light m-2"><i class="fa fa-plus"></i> Add New
+            Employee</a>
+    </div>
+
+    <h2 class="m-3 text-center">Employee Details ({{ pagination.getTotalItemCount }})</h2>
+
+    <form>
+        <div class="input-group mb-3">
+            <input type="text" name="q" class="form-control" value="{{ app.request.query.get('q') }}"
+                placeholder="Search...">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary">
+                    <span class="fa fa-search"></span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover results">
+        <thead class="thead-dark">
+            <tr>
+                <th>Sr no.</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Name', 'emp.firstName') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Email', 'emp.email') }}</th>
+                <th>Number</th>
+                <th>Roles</th>
+                <th>Profile</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        {% if pagination is defined %}
+        {% for u in pagination %}
+        <tbody>
+            <tr>
+                <td scope="row"> {{ pagination.getPaginationData.firstItemNumber + loop.index - 1 }} </td>
+                <td> {{ u.firstname ~ ' '~ u.lastname }} </td>
+                <td> {{ u.email }} </td>
+                <td> {{ u.mobileNumber }} </td>
+
+                <td> {{ u.Roles['0'] }}
+                </td>
+                <td>
+                    {% if not u.empDetails.getUserImg() is defined %}
+                    <img src="xyz.jpg" alt="No Profile Picture" width="30">
+                    {% else %}
+                    <img src="profile/{{ u.empDetails.getUserImg() }}" alt="No Profile Picture" width="30">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if is_granted (u.roles['0'])  %}
+                    <a href="{{ path( 'edit' , { id: u.id }) }}" ><i class="fa fa-edit" style="color:black"></i></a>  ||
+                    <a href="{{ path( 'delete' , { id: u.id }) }}" onclick="return confirm('Are you sure?')"><i
+                            class="fa fa-trash" aria-hidden="true" style="color:black"></i></a>
+                   {% else %}
+                        <i class="fa fa-edit"  style="color:#c0c0c0"></i> || <i
+                            class="fa fa-trash"  style="color:#c0c0c0" aria-hidden="true"></i>
+                   {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr class="text-center">
+                <h3 class="warning no-result ">
+                    <td colspan="7 "><i class="fa fa-warning"></i> No result</td>
+                </h3>
+            </tr>
+        </tbody>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>
+
+{#
+<pre>
+{{ dump( user ) }}
+</pre> #}
+
+
+{% endblock %}

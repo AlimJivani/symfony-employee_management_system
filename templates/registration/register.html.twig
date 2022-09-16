@@ -1,0 +1,222 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Register{% endblock %}
+
+{% block content %}
+
+<div class="container col-9">
+
+    <h1 class="text-center mt-2">SignUp</h1>
+
+    {{ form_start(registrationForm, { attr: { novalidate: 'novalidate'} }) }}
+
+    <div class="text-danger">
+        {{ form_errors(registrationForm) }}
+    </div>
+
+    {# {{ form_row(registrationForm._token) }} #}
+
+
+    {# firstname #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.firstName, 'First name') }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.firstName, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter First name'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.firstName) }}</small>
+    </div>
+
+    {# lastname #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.lastName, 'Last name') }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.lastName, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Last name'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.lastName) }}</small>
+    </div>
+
+    {# email #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.email) }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Email'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.email) }}</small>
+    </div>
+    
+    {# password #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.password.first) }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.password.first, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Password'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.password.first) }}</small>
+    </div>
+
+    {# Confirm password #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.password.second) }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.password.second, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Confirm Password'}})}}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.password.second) }}</small>
+    </div>
+
+    {# Gender #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.gender) }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.gender, {'attr': {'class': 'form-control mb-2'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.gender) }}</small>
+    </div>
+
+    {# dateOfBirth #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.dateOfBirth, 'Date of Birth (DD/MM/YYYY)') }}</label><i
+            class="text-danger">*</i>
+        {{ form_widget(registrationForm.dateOfBirth, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Date of Birth'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.dateOfBirth) }}</small>
+        <script>
+            $(document).ready(function () {
+                $("#registration_form_dateOfBirth").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: '-100:-5'
+                });
+            });
+        </script>
+
+    </div>
+
+    {# Mobile #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.mobileNumber, 'Mobile number') }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.mobileNumber, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Mobile number'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.mobileNumber) }}</small>
+    </div>
+
+    {# Address #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.address) }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.address, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Address'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.address) }}</small>
+    </div>
+
+    {# Country #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.country) }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.country, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Country'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.country) }}</small>
+    </div>
+
+    {# State #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.state) }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.state, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter State'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.state) }}</small>
+    </div>
+
+    {# City #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.city) }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.city, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter City'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.city) }}</small>
+    </div>
+
+
+
+    {# Pincode #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(registrationForm.pincode) }}</label><i class="text-danger">*</i>
+        {{ form_widget(registrationForm.pincode, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Pincode'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(registrationForm.pincode) }}</small>
+    </div>
+
+    {# Tearms #}
+    <div class="form-group mb-2">
+        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input mb-2 '}})
+        }}
+        <label>{{ form_label(registrationForm.agreeTerms, "Agree to terms and conditions") }}</label><i
+            class="text-danger">*</i>
+        <small class="form-text text-danger">{{ form_errors(registrationForm.agreeTerms) }}</small>
+    </div>
+
+    {# Submit #}
+    <div class="mt-2">
+        {{ form_widget(registrationForm.save, {'label': 'Signup' , 'attr': {'class': 'btn btn-lg btn-primary mb-2'}})
+        }}
+    </div>
+
+
+    
+    {{ form_end(registrationForm) }}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var $country = $('#registration_form_country');
+            var $state = $('#registration_form_state');
+
+            // When country gets selected ...
+            $country.change(function () {
+                // ... retrieve the corresponding form.
+                var $form = $(this).closest('form');
+                // Simulate form data, but only include the selected country value.
+                var data = {};
+                data[$country.attr('name')] = $country.val();
+                // Submit data via AJAX to the form's action path.
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: $form.attr('method'),
+                    data: data,
+                    success: function (html) {
+                        // Replace current province field ...
+                        $('#registration_form_state').replaceWith(
+                            // ... with the returned one from the AJAX response.
+                            $(html).find('#registration_form_state')
+                        );
+
+                        $state = $('#registration_form_state');
+                        $state.change(function () {
+                            // ... retrieve the corresponding form.
+                            var $form = $(this).closest('form');
+                            // Simulate form data, but only include the selected state value.
+                            var data = {};
+                            data[$state.attr('name')] = $state.val();
+                            // Submit data via AJAX to the form's action path.
+                            $.ajax({
+                                url: $form.attr('action'),
+                                type: $form.attr('method'),
+                                data: data,
+                                success: function (html) {
+                                    // Replace current city field ...
+                                    $('#registration_form_city').replaceWith(
+                                        // ... with the returned one from the AJAX response.
+                                        $(html).find('#registration_form_city')
+                                    );
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+
+            // When state gets selected ...
+
+        });
+    </script>
+
+
+    {% endblock %}
+
+
+    {# {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.plainPassword, {
+        label: 'Password'
+        }) }}
+    {{ form_row(registrationForm.agreeTerms) }}
+    <button type="submit" class="btn">Register</button>
+    #}

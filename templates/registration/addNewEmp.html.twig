@@ -1,0 +1,335 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UpdateEmpDetails{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="text-danger">
+        {{ form_errors(addNewEmp) }}
+    </div>
+
+{% if user is defined %} 
+<h2 class="text-center mt-2">Update</h2>
+{% else %}
+<h2 class="text-center mt-2">Add</h2>
+{% endif %}
+
+<div class="container col-9">
+
+        {{ form_start(addNewEmp, {attr: {novalidate: 'novalidate'}}) }}
+    
+            {# firstname #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.firstName , 'First name') }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.firstName, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter First name'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.firstName) }}</small>
+        </div>
+
+        {# lastname #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.lastName, 'Last name') }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.lastName, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Last name'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.lastName) }}</small>
+        </div>
+
+        {% if user is not defined %} 
+        {# email #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.email) }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.email, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Email'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.email) }}</small>
+        </div>
+        {% endif %}
+
+        {# Roles #}
+        <div class="form-group mb-2">
+        <label>{{ form_label(addNewEmp.roles) }}</label><i class="text-danger">*</i>
+        {{ form_widget(addNewEmp.roles, {'attr': {'class': 'form-control mb-2 '}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(addNewEmp.roles) }}</small>
+        </div>
+
+        {% if not  user is defined %}
+            {# password #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.password.first) }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.password.first, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Password'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.password.first) }}</small>
+        </div>
+
+        {# Confirm password  #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.password.second) }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.password.second, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Confirm Password'}})}}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.password.second) }}</small>
+        </div>
+        {% endif %}
+
+
+        {# Gender #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.gender) }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.gender, {'attr': {'class': 'form-control mb-2'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.gender) }}</small>
+        </div>
+
+        {# dateOfBirth #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.dateOfBirth, 'Date of Birth (DD/MM/YYYY)') }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.dateOfBirth, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Date of Birth'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.dateOfBirth) }}</small>
+            <script>
+                $(document).ready(function () {
+                    $("#emp_details_dateOfBirth").datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        yearRange: '-100:-5'
+                    });
+                });
+            </script>
+
+        </div>
+
+        {# Mobile #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.mobileNumber, 'Mobile number') }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.mobileNumber, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Mobile number'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.mobileNumber) }}</small>
+        </div>
+
+        {# Address #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.address) }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.address, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Address'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.address) }}</small>
+        </div>
+
+          {# Country #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(addNewEmp.country) }}</label><i class="text-danger">*</i>
+        {{ form_widget(addNewEmp.country, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Country'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(addNewEmp.country) }}</small>
+    </div>
+
+    {# State #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(addNewEmp.state) }}</label><i class="text-danger">*</i>
+        {{ form_widget(addNewEmp.state, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter State'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(addNewEmp.state) }}</small>
+    </div>
+
+    {# City #}
+    <div class="form-group mb-2">
+        <label>{{ form_label(addNewEmp.city) }}</label><i class="text-danger">*</i>
+        {{ form_widget(addNewEmp.city, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter City'}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(addNewEmp.city) }}</small>
+    </div>
+
+        {# Pincode #}
+        <div class="form-group mb-2">
+            <label>{{ form_label(addNewEmp.pincode) }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.pincode, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Enter Pincode'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.pincode) }}</small>
+        </div>
+        
+        {# JobTitle #}
+        <div class="form-group mb-2">
+            <label >{{ form_label(addNewEmp.EmpDetails.jobTitle , 'Job title') }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.EmpDetails.jobTitle, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Plese enter Job-Title'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.EmpDetails.jobTitle) }}</small>
+        </div>
+
+        {# JobDescription #}
+        <div class="form-group mb-2">
+            <label >{{ form_label(addNewEmp.EmpDetails.jobDes , 'Job description') }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.EmpDetails.jobDes, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Plese enter Job-Description'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.EmpDetails.jobDes) }}</small>
+        </div>
+
+        {# LinkdinLink #}
+        <div class="form-group mb-2">
+            <label >{{ form_label(addNewEmp.EmpDetails.linkdinLink , 'Linkdin Link') }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.EmpDetails.linkdinLink, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Plese enter Linkedin Profile-link'}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.EmpDetails.linkdinLink) }}</small>
+        </div>
+
+        {# JobExperience #}
+        <div class="form-group mb-2">
+            <label >{{ form_label(addNewEmp.EmpDetails.jobExp , 'Job experience') }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.EmpDetails.jobExp, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Plese enter Job Experience '}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.EmpDetails.jobExp) }}</small>
+        </div>
+
+        {# CompanyName #}
+        <div class="form-group mb-2">
+            <label >{{ form_label(addNewEmp.EmpDetails.companyName) }}</label><i class="text-danger">*</i>
+            {{ form_widget(addNewEmp.EmpDetails.companyName, {'attr': {'class': 'form-control mb-2 ' ,placeholder:'Plese enter Company Name '}})
+            }}
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.EmpDetails.companyName) }}</small>
+        </div>
+
+        {# UserImage #}
+        <div class="form-group mb-2">
+        <label class="form-label" for="customFile">{{ form_label(addNewEmp.EmpDetails.userImg,'User-Profile ') }}</label><i class="text-danger">*</i>
+         {{ form_widget(addNewEmp.EmpDetails.userImg, {'attr': {'class': 'form-control mb-2 '}})
+        }}
+        <small class="form-text text-danger">{{ form_errors(addNewEmp.EmpDetails.userImg) }}</small>
+      </div>
+
+        {# Tearms #}
+        <div class="form-group mb-2">
+            {{ form_widget(addNewEmp.agreeTerms, {'attr': {'class': 'form-check-input mb-2 '}})
+            }}
+            <label>{{ form_label(addNewEmp.agreeTerms , "Agree to terms and conditions") }}</label><i
+                class="text-danger">*</i>
+            <small class="form-text text-danger">{{ form_errors(addNewEmp.agreeTerms) }}</small>
+        </div>      
+      
+        {# Submit #} 
+        {% if user is defined %} 
+            <div class="mt-2">
+                    {{ form_widget(addNewEmp.save, { 'label': 'Update' , 'attr': {'class': 'btn btn-lg btn-primary mb-2'}}) }}
+                </div>
+        {% else %}
+                <div class="mt-2">
+                    {{ form_widget(addNewEmp.save, { 'label': 'Add' , 'attr': {'class': 'btn btn-lg btn-primary mb-2'}}) }}
+                </div>
+        {% endif %}
+
+</div>
+{{ form_end(addNewEmp) }}
+
+{# <pre>
+    {{ dump(addNewEmp) }}
+</pre> #}
+   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>   
+
+   {% if not user is defined %}
+        <script>
+            $(document).ready(function() {
+                var $country = $('#emp_details_country');
+                var $state = $('#emp_details_state');
+
+                $country.change(function () {
+                    var $form = $(this).closest('form');
+                    var data = {};
+                    data[$country.attr('name')] = $country.val();
+                    $.ajax({
+                        url: $form.attr('action'),
+                        type: $form.attr('method'),
+                        data: data,
+                        success: function (html) {
+                            $('#emp_details_state').replaceWith(
+                                $(html).find('#emp_details_state')
+                            );
+                            $('#emp_details_city').replaceWith(
+                                $(html).find('#emp_details_city')
+                            );
+                            $state = $('#emp_details_state');
+                            $state.change( function () {
+                            var $form = $(this).closest('form');
+                            var data = {};
+                            data[$state.attr('name')] = $state.val();
+                            $.ajax({
+                                url: $form.attr('action'),
+                                type: $form.attr('method'),
+                                data: data,
+                                success: function (html) {
+                                    $('#emp_details_city').replaceWith(
+                                        $(html).find('#emp_details_city')
+                                    );
+                                }
+                            });
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    {% else %}
+        <script>
+            $(document).ready(function() {
+                var $country = $('#emp_details_country');
+                var $state = $('#emp_details_state');
+                $country.change(function () {
+                    var $form = $(this).closest('form');
+                    var data = {};
+                    data[$country.attr('name')] = $country.val();
+                    $.ajax({
+                        url: 'action',
+                        type: $form.attr('method'),
+                        data: data,
+                        success: function (html) { 
+                            $('#emp_details_state').replaceWith(
+                                $(html).find('#emp_details_state')
+                            );
+                            $('#emp_details_city').replaceWith(
+                                $(html).find('#emp_details_city')
+                            );
+                            $(document).ready(function() {
+                                $state = $('#emp_details_state');
+                                $state.change( function () {
+                                var $form = $(this).closest('form');
+                                var data = {};
+                                data[$state.attr('name')] = $state.val();
+                                    $.ajax({
+                                        url: ('action'),
+                                        type: $form.attr('method'),
+                                        data: data,
+                                        success: function (html) {
+                                            $('#emp_details_city').replaceWith(
+                                                $(html).find('#emp_details_city')
+                                            );
+                                        }
+                                    });
+                                }); 
+                            });
+                        }
+                    });
+                });
+                $state.change( function () {
+                var $form = $(this).closest('form');
+                var data = {};
+                data[$state.attr('name')] = $state.val();
+                    $.ajax({
+                        url: ('action'),
+                        type: $form.attr('method'),
+                        data: data,
+                        success: function (html) {
+                            $('#emp_details_city').replaceWith(
+                                $(html).find('#emp_details_city')
+                            );
+                        }
+                    });
+                });
+            });
+        </script>
+    {% endif %}
+
+{% endblock %}
+
+    {# {{ form_start(addNewEmp, {attr: {novalidate: 'novalidate'}}) }}
+
+{{ form_row(addNewEmp._token) }}
+
+    {{ form_end(addNewEmp) }}  #}

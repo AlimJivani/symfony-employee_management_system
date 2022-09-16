@@ -12020,3 +12020,4 @@ vendor/symfony/security-http/Authenticator/Debug/TraceableAuthenticator.php
 vendor/symfony/security-http/Authenticator/Debug/TraceableAuthenticatorManagerListener.php
 vendor/symfony/var-dumper/Caster/FiberCaster.php
 vendor/symfony/var-dumper/Caster/MysqliCaster.php
+var/
